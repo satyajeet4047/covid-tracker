@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="16dp">
+
+    <TextView
+        android:id="@+id/tv_active_case_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="8dp"
+        android:text="Active Cases"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/blue"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_recovered_cased_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Recovered Cases"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/green"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.628"
+        app:layout_constraintLeft_toRightOf="@id/tv_active_case_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_active_case_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_recovered_cased_count"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="@+id/tv_active_case_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_active_case_title"
+        app:layout_constraintVertical_bias="0.032" />
+
+    <TextView
+        android:id="@+id/tv_recovered_cased_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="8dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/green"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_deceased_case_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_recovered_cased_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recovered_cased_title"
+        app:layout_constraintVertical_bias="0.954" />
+
+    <TextView
+        android:id="@+id/tv_deceased_case_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Deceased Cases"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/deceased_text_color"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_active_case_count"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_deceased_case_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/deceased_text_color"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_deceased_case_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_deceased_case_title"
+        app:layout_constraintVertical_bias="0.067" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

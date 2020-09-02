@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screens.fragment.DashboardFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+    <View
+        android:id="@+id/view_blank"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_active_case_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Covid Status"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/credentials_card"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_active_case_title">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_detail_count_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true"
+                tools:ignore="MissingConstraints">
+
+                <include layout="@layout/covid_details"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="36dp"
+                android:text="State details"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.781"
+                app:layout_constraintTop_toTopOf="@+id/ic_india_map" />
+
+            <TextView
+                android:id="@+id/tv_state_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="click on state"
+                android:textColor="@color/yellow"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.77"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/tv_sate_active_count"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/blue"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.578"
+                app:layout_constraintTop_toBottomOf="@+id/tv_state_name" />
+
+
+
+            <com.richpath.RichPathView
+                android:id="@+id/ic_india_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_detail_count_view"
+                app:vector="@drawable/ic_india_map" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</FrameLayout>
