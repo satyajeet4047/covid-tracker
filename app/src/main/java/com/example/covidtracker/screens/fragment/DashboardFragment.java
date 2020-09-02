@@ -13,6 +13,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,7 +35,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DashboardFragment extends BaseFragment implements RichPath.OnPathClickListener{
+public class DashboardFragment extends BaseFragment implements RichPath.OnPathClickListener, SwipeRefreshLayout.OnRefreshListener {
 
 
     private static final String TAG = "DashboardFragment";
@@ -64,6 +65,9 @@ public class DashboardFragment extends BaseFragment implements RichPath.OnPathCl
     @BindView(R.id.ic_india_map)
     RichPathView richPathView ;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
 
     Dialog dialog;
 
@@ -91,6 +95,7 @@ public class DashboardFragment extends BaseFragment implements RichPath.OnPathCl
 
         richPathView.setOnPathClickListener(this);
 
+        swipeRefreshLayout.setOnRefreshListener(this);
         mViewModel.fetchData();
         setObservables();
     }
@@ -105,12 +110,9 @@ public class DashboardFragment extends BaseFragment implements RichPath.OnPathCl
                 int activeCount = covidDataResponse.getData().getUnofficial_summary().get(0).getActive();
                 int recoveredCount = covidDataResponse.getData().getUnofficial_summary().get(0).getRecovered();
                 int deceasedCount = covidDataResponse.getData().getUnofficial_summary().get(0).getDeaths();
-
-
                 activeCasesView.setText(String.valueOf(activeCount));
                 recoveredCasesView.setText(String.valueOf(recoveredCount));
                 deceasedCasesView.setText(String.valueOf(deceasedCount));
-
                 dialog.dismiss();
 
             }
@@ -119,9 +121,7 @@ public class DashboardFragment extends BaseFragment implements RichPath.OnPathCl
 
 
         mViewModel.getRegionalMutableLiveData().observe(getViewLifecycleOwner(),regional -> {
-
             selectedStateNameView.setText(regional.getLoc());
-
             int active = regional.getTotalConfirmed()- regional.getDischarged()- regional.getDeaths();
             stateActivecasesView.setText(String.valueOf(active));
 
@@ -152,7 +152,21 @@ public class DashboardFragment extends BaseFragment implements RichPath.OnPathCl
 
     void showLoadingDialog(){
 
-         dialog = ProgressDialog.show(getActivity(), "Loading...", "Please wait...", true);
+        dialog = ProgressDialog.show(getActivity(), "Loading...", "Please wait...", true);
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mViewModel.onDestroy();
+    }
+
+    @Override
+    public void onRefresh() {
+        showLoadingDialog();
+        mViewModel.fetchData();
+    }
 }
