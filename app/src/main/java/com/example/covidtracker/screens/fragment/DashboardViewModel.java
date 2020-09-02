@@ -30,7 +30,7 @@ import io.reactivex.schedulers.Schedulers;
 public class DashboardViewModel extends ViewModel {
     // TODO: Implement the ViewModel
 
-    ServiceApiManager mServiceApiManager;
+    private ServiceApiManager mServiceApiManager;
 
     private CompositeDisposable disposable;
 
@@ -38,7 +38,7 @@ public class DashboardViewModel extends ViewModel {
     private final MutableLiveData<Regional> regionalMutableLiveData = new MutableLiveData<>();
 
     @Inject
-    public DashboardViewModel(ServiceApiManager serviceApiManager) {
+    DashboardViewModel(ServiceApiManager serviceApiManager) {
         this.mServiceApiManager = serviceApiManager;
         disposable = new CompositeDisposable();
     }
@@ -71,7 +71,6 @@ public class DashboardViewModel extends ViewModel {
                     public void onError(Throwable e) {
 
                         Log.d("Viewmodel ", "****** onError: called ***** \n"+ e.getMessage());
-
                         covidDataResponseMutableLiveData.setValue(null);
                     }
                 }));
@@ -84,19 +83,18 @@ public class DashboardViewModel extends ViewModel {
             CovidData covidData = covidDataResponseMutableLiveData.getValue().getData();
 
             List<Regional> regionalData = covidData.getRegional();
+            for(Regional regional : regionalData){
 
-
-           for(Regional regional : regionalData){
-
-               if(regional.getLoc().equals(selectedState)){
-                   regionalMutableLiveData.setValue(regional);
-               }
+                if(regional.getLoc().equals(selectedState)){
+                    regionalMutableLiveData.setValue(regional);
+                }
             }
-
-
-
         }
+    }
 
+
+    void onDestroy(){
+        disposable.dispose();
     }
 
 
